@@ -28,48 +28,75 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full px-6 h-16 text-white bg-black fixed">
-      <a href="home.jsx" className="md:px-20">
-        <img className="w-8" src="mylogo.png" alt="" />
-      </a>
+    <nav
+      className="flex flex-wrap
+          items-center
+          justify-between
+          w-full
+          py-4
+          md:py-0
+          px-4
+          h-16
+          text-lg text-gray-700
+          bg-slate-200 shadow fixed"
+    >
+      <div className="flex justify-center md:px-10">
+        <a href="home.jsx">
+          <img className="object-scale-down h-9 w-40" src="logo.png" alt="" />
+        </a>
+      </div>
+      <div className="hidden w-full md:flex md:items-center md:w-auto">
+        <ul
+          className="pt-2
+              text-base text-gray-700
+              md:flex
+              md:justify-between 
+              md:pt-0"
+        >
+          {nav_links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="cursor-pointer font-medium hover:scale-110 duration-300 md:p-4 py-2 block hover:text-indigo-900"
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <ul className="justify-center hidden md:flex">
-        {nav_links.map(({ id, link }) => (
-          <li
-            key={id}
-            className="px-4 cursor-pointer font-medium hover:scale-110 duration-300"
-          >
-            {link}
-          </li>
-        ))}
-      </ul>
-      <a
-        href="index.html"
-        className="px-20 hidden md:block p-3   text-white bg-gray-600  hover:bg-gray-300 rounded-full"
-      >
-        Get Started
-      </a>
+      <div className="hidden px-10 w-full md:flex md:items-center md:w-auto">
+        <a
+          href="home.jsx"
+          className=" w-full p-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+        >
+          Get Started
+        </a>
+      </div>
 
       <div
         onClick={() => setNav(!nav)}
         className="cursor-pointer pr-4 z-10 text-gray-300 md:hidden"
       >
-        {nav ? <FiMinimize size={30} /> : <FiGrid size={30} />}
+        {nav ? (
+          <FiMinimize color="blue" size={30} />
+        ) : (
+          <FiGrid color="blue" size={30} />
+        )}
       </div>
 
       {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-16 right-0 w-1/2  bg-blue-500 rounded-bl-lg">
+        <ul className="flex flex-col justify-center items-center absolute top-16 right-0 w-1/2  bg-slate-200  rounded-bl-lg">
           {nav_links.map(({ id, link }) => (
             <li
               key={id}
-              className="px-4 cursor-pointer py-6 text-3xl hover:scale-110 duration-300"
+              className="px-4 cursor-pointer py-6 text-3xl hover:scale-110 duration-300 hover:text-blue-900"
             >
               {link}
             </li>
           ))}
         </ul>
       )}
-    </div>
+    </nav>
   );
 };
 
